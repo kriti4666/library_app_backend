@@ -30,7 +30,6 @@ const createBook = async (req, res) => {
 
 const deleteBook = async (req, res) => {
   const { bookId } = req.params;
-  console.log(bookId, "lkj");
 
   try {
     const { userId, roles } = req.user;
