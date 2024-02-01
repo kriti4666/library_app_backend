@@ -11,7 +11,7 @@ router.get("/", getBooks);
 router.post("/create", authorize("CREATOR"), createBook);
 
 // Delete a book
-router.delete('delete/:bookId', authorize('CREATOR'), deleteBook);
+router.delete('/delete/:bookId', authorize('CREATOR'), deleteBook);
 
 
 module.exports = router;
