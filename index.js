@@ -1,0 +1,27 @@
+require("dotenv").config();
+const express = require('express');
+const cors = require("cors");
+const Connect = require('./src/Config/db');
+const PORT = process.env.PORT;
+
+const app = express();
+const userRoute = require("./src/routes/user.routes")
+const bookRoutes = require("./src/routes/book.route")
+const { Authenticate } = require("./src/middleware/authMiddleware");
+
+app.use(express.urlencoded({extended: true}))
+app.use(express.json());
+
+app.use(cors());
+app.get('/', (req, res) => res.send('hello'));
+
+
+app.use("/user", userRoute);
+app.use(Authenticate);
+app.use("/books", bookRoutes);
+
+
+app.listen(PORT, async () => {
+    console.log(`Server is running on port ${PORT}`);
+    await Connect();
+});
